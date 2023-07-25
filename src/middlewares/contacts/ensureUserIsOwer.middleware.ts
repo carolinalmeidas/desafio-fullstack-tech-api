@@ -1,0 +1,73 @@
+import { NextFunction, Request, Response } from "express";
+import { AppDataSource } from "../../data-source";
+import { AppError } from "../../error";
+import User from "../../entities/user.entitie";
+import { Repository } from "typeorm";
+import Contact from "../../entities/contact.entities";
+
+// const ensureIfUserOwnerMiddleware = async (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ): Promise<void> => {
+//   const id: number = parseInt(req.params.id)
+//   const compareId: number = parseInt(res.locals.userId)
+//   if(id === compareId){
+//     const userRepository = AppDataSource.getRepository(User);
+//     const findUser = await userRepository.findOneBy({
+//       id: id,
+//     });
+//     res.locals.user = findUser;
+  
+//   }else{
+//     throw new AppError("Insufficient permission", 403);
+//   }
+
+//   return next();
+// };
+
+const ensureIfUserOwnerofContactAllMiddleware = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const id: number = res.locals.userId
+  const userRepository: Repository<User> = AppDataSource.getRepository(User);
+  const contactRepository: Repository<Contact> = AppDataSource.getRepository(Contact)
+  const user = await userRepository.findOneBy({
+      id: id
+  })
+  const userId = user?.id;
+  const contacts = await contactRepository.find({
+      where: {
+          user:{id: userId || 0}
+      }
+  });
+  console.log(contacts)
+  res.locals.contact = contacts
+  return next();
+}
+
+const ensureIfUserOwnerofContactOneMiddleware = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const id: number = res.locals.userId
+  const userRepository: Repository<User> = AppDataSource.getRepository(User);
+  const contactRepository: Repository<Contact> = AppDataSource.getRepository(Contact)
+  const user = await userRepository.findOneBy({
+      id: id
+  })
+  const userId = user?.id;
+  const contacts = await contactRepository.findOneBy({
+      user:{
+        id: userId || 0
+      }
+  });
+  console.log(contacts)
+  res.locals.contact = contacts
+  return next();
+}
+
+export  {ensureIfUserOwnerofContactAllMiddleware, ensureIfUserOwnerofContactOneMiddleware}
