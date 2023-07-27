@@ -4,6 +4,7 @@ import { createUserService } from "../services/users/createUser.service";
 import deleteUserService from "../services/users/deleteUser.service";
 import updateUserService from "../services/users/updateUser.service";
 import User from "../entities/user.entitie";
+import listUserService from "../services/users/listaUsuario.service";
 
 
 const createUserController = async (
@@ -13,6 +14,16 @@ const createUserController = async (
     const userData: TUserRequest = req.body;
     const user = await createUserService(userData);
     return res.status(201).json(user);
+  };
+
+  const listUserControllers = async (
+    req: Request,
+    res: Response
+  ): Promise<Response> => {
+    const id: number = res.locals.userId
+    
+    const listContact = await listUserService(id);
+    return res.json(listContact);
   };
 
 const updateUserControllers = async (
@@ -36,6 +47,7 @@ const updateUserControllers = async (
 
 export {
     createUserController,
+    listUserControllers,
     updateUserControllers,
     deleteUserController
 }

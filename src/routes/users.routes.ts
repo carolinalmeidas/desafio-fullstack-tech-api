@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createUserController,
   deleteUserController,
+  listUserControllers,
   updateUserControllers,
 } from "../controllers/users.controller";
 import { updateUserSchema, userSchemaRequest } from "../schemas/users.schema";
@@ -17,6 +18,8 @@ userRoutes.post(
   ensurePhoneExistMiddlewareUser,
   createUserController
 );
+
+userRoutes.get("", ensureTokenIsValidMiddleware, listUserControllers )
 
 userRoutes.patch(
   "/:id",
