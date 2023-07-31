@@ -5,7 +5,7 @@ Essa é uma aplicação CONTACT API com objetivo de facilitar a gestão de seus 
 ## Endpoints
 A API possue endpoints para cadastrar usuário, realizar login, cadastrar contatos e fazer atuzalização dos seus contatos.
 
-<a href="https://insomnia.rest/run/?label=BookWise%20API&uri=https%3A%2F%2Fgithub.com%2FBookWise-API%2Fbookwise-api%2Fblob%2Fmain%2FBookWise_InsomniaProject" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=CONTACT%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fcarolinalmeidas%2Fdesafio-fullstack-tech-api%2Fmain%2FInsomnia_2023-07-31.json)
 
 <blockquote> Para importar o JSON no Insomnia é só clicar no botão "Run in Insomnia". Depois é só seguir os passos que ele irá importar todos os endpoints em seu insomnia.
 </blockquote>
