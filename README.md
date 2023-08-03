@@ -15,7 +15,8 @@ A API possue endpoints para cadastrar usuário, realizar login, cadastrar contat
 1) Clonar o repositório em sua maquina.
 2)  Configurar as variáveis de ambiente conforme arquivo .env.example
 3)  Instar todas as dependências do projeto: COMANDO npm install
-4)  Rodas aplicação: npm run dev
+4)  Para realizar as migrações: <strong>npm run typeorm migration:generate -- -d src/data-source src/migrations/createTable</strong> e  <strong>npm run typeorm migration:run -- -d src/data-source</strong>
+6)  Rodas aplicação: npm run dev
 
 
 
